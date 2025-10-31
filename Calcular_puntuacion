@@ -1,0 +1,55 @@
+def calcular_puntuacion_parcial(letras_correctas: list, letras_incorrectas: list, palabra_secreta: str) -> int:
+    """Calcula los puntos obtenidos al jugar una palabra.
+    +3 por letra correcta, -1 por letra incorrecta
+
+    Args:
+        letras_correctas (list): Letras que coinciden con las letras de la palabra correcta
+        letras_incorrectas (list): Letras que no coinciden con las letras de la palabra correcta
+        palabra_secreta (str): palabra a encontrar
+
+    Returns:
+        int: devuelve la puntuacion parcial de la palabra en juego
+    """
+    puntuacion = 0
+    puntuacion += len(letras_correctas) * 3
+    puntuacion -= len(letras_incorrectas)
+
+    if puntuacion < 0:
+        puntuacion = 0
+
+    return puntuacion
+
+
+def calcular_puntuacion_final(puntajes_parciales: list) -> int:
+    """
+    Suma todos los puntajes parciales acumulados.
+    """
+    total = 0
+    for p in puntajes_parciales:
+        total = total + p
+    
+    return total
+
+
+
+# Lista vacía donde se guardarán todos los puntajes parciales
+puntajes_parciales = []
+
+seguir = True
+
+while seguir:
+    letras_correctas = ["a", "c"]
+    letras_incorrectas = ["z"]
+    palabra = "cancha"
+
+
+    puntaje_parcial = calcular_puntuacion_parcial(letras_correctas, letras_incorrectas, palabra)
+
+
+    puntajes_parciales.append(puntaje_parcial)
+
+
+
+# Cuando termina el juego, calculamos el total
+puntaje_final = calcular_puntuacion_final(puntajes_parciales)
+print("Puntaje total del jugador:", puntaje_final)
